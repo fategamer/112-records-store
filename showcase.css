@@ -36,6 +36,21 @@
   color: var(--muted);
   margin-bottom: 1.75rem;
 }
+.showcase-hero {
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: #111;
+  margin: 0 auto 1.25rem;
+  max-width: 920px;
+}
+.showcase-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
 .showcase-wall {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -44,6 +59,7 @@
   overflow: hidden;
   border: 1px solid rgba(212, 175, 55, 0.25);
   background: #111;
+  margin-top: 1rem;
 }
 .showcase-wall a {
   display: block;
@@ -83,11 +99,19 @@
   margin-left: auto;
   margin-right: auto;
 }
+.showcase-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
 @media (max-width: 640px) {
   .showcase-wall {
     grid-template-columns: 1fr;
     max-width: 320px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   .showcase-wall a {
     aspect-ratio: 1 / 1.1;
