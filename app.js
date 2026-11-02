@@ -114,6 +114,40 @@ const PRODUCTS = [
       "Kangaroo pocket · relaxed fit · S–XXL"
     ],
     image: "https://cdn.shopify.com/s/files/1/0833/3852/6957/files/IMG_2083.jpg?v=1793602507"
+  },
+  {
+    id: "eleven-over-two-records-dod-signature-denim-jacket",
+    handle: "eleven-over-two-records-dod-signature-denim-jacket",
+    title: "DOD Signature Denim Jacket",
+    price: "KES 16,900",
+    collection: "outerwear",
+    tag: "Premium · Outerwear",
+    desc: "Premium heavy-wash black denim jacket with iconic Discipline Over Drama branding. Clean chest mark up front, bold monochrome graffiti hand + DOD statement on the back.",
+    bullets: [
+      "100% premium cotton denim",
+      "Heavy-wash black finish",
+      "Front: minimalist chest branding + hardware",
+      "Back: high-contrast graffiti hand + DOD typography"
+    ],
+    sizes: ["One Size"],
+    image: "https://cdn.shopify.com/s/files/1/0833/3852/6957/files/IMG_2095.jpg?v=1793613364"
+  },
+  {
+    id: "eleven-over-two-records-dod-curated-streetwear-set",
+    handle: "eleven-over-two-records-dod-curated-streetwear-set",
+    title: "DOD Curated Streetwear Set",
+    price: "KES 37,500",
+    collection: "sets",
+    tag: "Full set · Bundle",
+    desc: "Official curated collection set — cap, utility jacket, cargo pants, and branded crew socks. Complete streetwear rotation in one drop.",
+    bullets: [
+      "DOD Streetwear Cap (embroidered)",
+      "Workwear Utility Jacket",
+      "Utility Cargo Pants",
+      "Branded Crew Socks with DOD insignia"
+    ],
+    sizes: ["One Size"],
+    image: "https://cdn.shopify.com/s/files/1/0833/3852/6957/files/IMG_2093.jpg?v=1793613396"
   }
 ];
 
@@ -212,7 +246,8 @@ function openDrawer(id) {
   const p = PRODUCTS.find((x) => x.id === id);
   if (!p || !drawer) return;
   activeProduct = p;
-  activeSize = "M";
+  const sizeOptions = p.sizes || SIZES;
+  activeSize = sizeOptions[0];
   closeMenu();
 
   document.getElementById("drawer-image").src = p.image;
@@ -224,7 +259,7 @@ function openDrawer(id) {
   document.getElementById("drawer-bullets").innerHTML = p.bullets.map((b) => `<li>${b}</li>`).join("");
 
   const sizesEl = document.getElementById("drawer-sizes");
-  sizesEl.innerHTML = SIZES.map((s) =>
+  sizesEl.innerHTML = sizeOptions.map((s) =>
     `<button type="button" class="size-btn${s === activeSize ? " is-active" : ""}" data-size="${s}">${s}</button>`
   ).join("");
 
