@@ -1,4 +1,4 @@
-/* 11/2 Records — Official storefront (Phase 2) */
+/* 11/2 Records — Official storefront */
 const SHOP = "https://r0up81-3t.myshopify.com";
 const SIZES = ["S", "M", "L", "XL", "XXL"];
 
@@ -41,8 +41,8 @@ const PRODUCTS = [
     title: "DOD Signature Tee — Olive Gold",
     price: "KES 2,500",
     collection: "tees",
-    tag: "Premium colourway · Tee",
-    desc: "Army olive body with the signature gold metallic hand graphic. The rare tone of Phase 2 — quiet colour, loud identity.",
+    tag: "Premium colour · Tee",
+    desc: "Army olive body with the signature gold metallic hand graphic. Rare tone — quiet colour, loud identity.",
     bullets: [
       "Premium midweight cotton blend",
       "Gold metallic finish print",
@@ -150,13 +150,38 @@ function renderProducts(filter = "all") {
   `).join("");
 }
 
-/* Filters */
 document.getElementById("filters")?.addEventListener("click", (e) => {
   const btn = e.target.closest(".filter");
   if (!btn) return;
   document.querySelectorAll(".filter").forEach((b) => b.classList.remove("is-active"));
   btn.classList.add("is-active");
   renderProducts(btn.dataset.filter);
+});
+
+/* Mobile menu (tagger) */
+const menuBtn = document.getElementById("menu-btn");
+const menuPanel = document.getElementById("menu-panel");
+
+function openMenu() {
+  if (!menuPanel) return;
+  menuPanel.hidden = false;
+  requestAnimationFrame(() => menuPanel.classList.add("is-open"));
+  menuBtn?.setAttribute("aria-expanded", "true");
+  document.body.classList.add("menu-open");
+}
+function closeMenu() {
+  if (!menuPanel) return;
+  menuPanel.classList.remove("is-open");
+  menuBtn?.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("menu-open");
+  setTimeout(() => { menuPanel.hidden = true; }, 250);
+}
+menuBtn?.addEventListener("click", () => {
+  if (menuPanel?.classList.contains("is-open")) closeMenu();
+  else openMenu();
+});
+menuPanel?.addEventListener("click", (e) => {
+  if (e.target.closest("a")) closeMenu();
 });
 
 /* Drawer */
@@ -170,6 +195,7 @@ function openDrawer(id) {
   if (!p || !drawer) return;
   activeProduct = p;
   activeSize = "M";
+  closeMenu();
 
   document.getElementById("drawer-image").src = p.image;
   document.getElementById("drawer-image").alt = p.title;
@@ -201,7 +227,6 @@ function closeDrawer() {
 function updateBuyLink() {
   const buy = document.getElementById("drawer-buy");
   if (!buy || !activeProduct) return;
-  // Shopify variant selection happens on product page; size is communicated via note in UI
   buy.href = productUrl(activeProduct.handle);
   buy.textContent = `Buy ${activeSize} — secure checkout`;
 }
@@ -225,7 +250,10 @@ document.getElementById("drawer-sizes")?.addEventListener("click", (e) => {
 document.getElementById("drawer-close")?.addEventListener("click", closeDrawer);
 overlay?.addEventListener("click", closeDrawer);
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeDrawer();
+  if (e.key === "Escape") {
+    closeDrawer();
+    closeMenu();
+  }
 });
 
 renderProducts();
