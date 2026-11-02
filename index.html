@@ -49,8 +49,12 @@
     </div>
   </header>
 
+  <!-- Dark backdrop: tap to close menu -->
+  <div class="menu-backdrop" id="menu-backdrop" hidden></div>
+
   <!-- Mobile / full menu panel (tagger) -->
   <div class="menu-panel" id="menu-panel" hidden>
+    <button type="button" class="menu-close" id="menu-close" aria-label="Close menu">×</button>
     <p class="menu-title">Explore the store</p>
     <a href="#shop" class="menu-link">Shop · All merchandise</a>
     <a href="#tees" class="menu-link">Tees</a>
@@ -61,6 +65,7 @@
     <a href="#contact" class="menu-link">Contact Us</a>
     <a href="https://www.fategamer.com" class="menu-link" target="_blank" rel="noopener">FATE GAMER HQ ↗</a>
     <a href="https://r0up81-3t.myshopify.com" class="menu-link gold" target="_blank" rel="noopener">Official Checkout ↗</a>
+    <button type="button" class="menu-back" id="menu-back">← Close menu / Back</button>
   </div>
 
   <main id="top">
@@ -103,7 +108,6 @@
       <div class="trust-item"><strong>Global brand</strong><span>From Kenya to the world</span></div>
     </section>
 
-    <!-- MERCHANDISE CENTER -->
     <section id="shop" class="shop">
       <div class="section-head">
         <p class="eyebrow">THE COLLECTION</p>
