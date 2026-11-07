@@ -613,6 +613,9 @@ details a { color: var(--gold-soft); text-decoration: underline; }
 }
 .community-link span { font-size: 1rem; transition: transform 0.2s ease; }
 .community-card:hover .community-link span { transform: translate(3px, -3px); }
+.community-footer { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; margin: 2.5rem auto 0; text-align: center; }
+.community-note { color: var(--muted); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; line-height: 1.7; }
+
 .community-secondary { max-width: 900px; margin: 3rem auto 0; }
 .community-secondary > .eyebrow { text-align: center; margin-bottom: 1rem; }
 .community-secondary .contact-grid { margin-bottom: 0; }
